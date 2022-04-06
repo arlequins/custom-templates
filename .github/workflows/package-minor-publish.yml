@@ -19,7 +19,7 @@ jobs:
           scope: '@arlequins'
       - name: npm publish
         run: |
-          npm publish minor
+          lerna publish from-git -y
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
