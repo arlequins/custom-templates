@@ -17,10 +17,6 @@ jobs:
           node-version: 17.x
           registry-url: https://npm.pkg.github.com
           scope: '@arlequins'
-      - name: setup npm
-        run: |
-          npm set @arlequins:registry=https://npm.pkg.github.com/arlequins
-          npm set "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}"
       - name: lerna publish
         run: |
           lerna publish from-package -y
