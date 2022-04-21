@@ -1,9 +1,5 @@
 {
   "devDependencies": {
     "lerna": "^4.0.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
   }
 }
