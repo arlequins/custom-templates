@@ -19,7 +19,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: lerna publish
         run: |
-          lerna publish from-package --no-verify-access -y
+          lerna publish from-package --no-verify-access -y --access public
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
