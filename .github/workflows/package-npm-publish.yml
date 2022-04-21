@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    environment: packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,11 +17,6 @@ jobs:
         with:
           node-version: 17.x
           registry-url: 'https://registry.npmjs.org'
-      - name: "NPM identity"
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
       - name: lerna publish
         run: |
           lerna publish from-package --no-verify-access -y
