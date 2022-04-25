@@ -26,7 +26,7 @@
       "react-app-rewired": "^2.2.1",
       "react-app-rewire-alias": "^1.1.7",
       "web-vitals": "^2.1.4",
-      "@arlequins/eslint-config-react-app": "^0.0.1"
+      "eslint-config-arlequin-typescript": "1.0.0"
     },
     "scripts": {
       "start": "react-app-rewired start",
