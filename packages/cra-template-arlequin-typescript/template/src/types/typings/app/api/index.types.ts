@@ -1,4 +1,4 @@
-import { AuthUserType, LoginStatus } from '@typings/arlequin';
+import { RoleEnum } from '@typings/app/index.types';
 
 export const enum ApiVersionEnum {
   V1 = 'v1',
@@ -20,17 +20,11 @@ export interface RequestLogin {
 }
 
 export interface ResponseLogin {
+  username: string;
   accessToken: string;
   expiresIn: number;
   idToken: string;
   refreshToken: string;
-  scope: string;
+  scope: RoleEnum;
   tokenType: string;
-}
-
-export interface AuthContextType {
-  user?: AuthUserType;
-  signin: (payload: RequestLogin) => Promise<LoginStatus>;
-  signout: () => void;
-  check: () => LoginStatus;
 }

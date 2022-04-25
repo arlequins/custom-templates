@@ -1,8 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { postUserInfo } from '@app/api/v1/auth';
 import { useAuth } from '@app/contexts/Auth';
-import { LoginStatus } from '@typings/arlequin';
+import { LoginStatus } from '@typings/app/index.types';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -19,13 +18,6 @@ const LoginPage = () => {
     const formData = new FormData(event.currentTarget);
     const username = formData.get('username') as string;
     const password = formData.get('password') as string;
-
-    const info = await postUserInfo({
-      username,
-      password,
-      grantType: 'password',
-    });
-    console.log('1', info);
 
     const loginStatus = await auth.signin({
       username,

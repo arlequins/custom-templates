@@ -1,5 +1,5 @@
 import { StorageStatus } from '@app/constants/enums.constants';
-import { AnyObjectType } from '@typings/arlequin';
+import { AnyObjectType } from '@typings/app/index.types';
 
 export default class AbstractStorageService {
   private key: string;
@@ -50,10 +50,12 @@ export default class AbstractStorageService {
     this.source.setItem(this.key, JSON.stringify(data));
     this.status = StorageStatus.SET;
   };
+
   public removeItem = () => {
     this.source.removeItem(this.key);
     this.status = StorageStatus.REMOVED;
   };
+
   public statusItem = () => {
     return this.status;
   };

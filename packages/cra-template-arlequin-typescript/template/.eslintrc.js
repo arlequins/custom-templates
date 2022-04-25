@@ -116,7 +116,7 @@ module.exports = {
       },
     },
     {
-      files: ["src/index.tsx", "src/index.production.tsx", "src/index.production.tsx", "src/reportWebVitals.ts", "src/setupTests.ts"],
+      files: ["src/index.tsx", "src/index.production.tsx", "src/reportWebVitals.ts", "src/setupTests.ts", "*.test.tsx"],
       rules: {
         "filenames/match-regex": "off",
       },

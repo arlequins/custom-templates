@@ -1,17 +1,9 @@
-import { postUserInfo } from '@app/api/v1/auth';
+import { postUserInfo } from '@app/api/v1/index.api';
 import authInfo from '@app/services/auth.service';
 import { authStorage } from '@app/services/localstorage.service';
-import { LoginStatus, PermissionEnum, RoleEnum } from '@typings/arlequin';
-import { RequestLogin } from '@typings/arlequin/api';
-
-// temp
-const DUMMY_USER = {
-  roles: [RoleEnum.SUPER_ADMIN],
-  permissions: [PermissionEnum.DASHBOARD],
-  accessToken: 'accessToken',
-  refreshToken: 'refreshToken',
-  expires: 10, // 10 secs
-};
+import { RequestLogin } from '@typings/app/api/index.types';
+import { ResultLogin } from '@typings/app/api/usecases.types';
+import { LoginStatus } from '@typings/app/index.types';
 
 const makeExpireTimestamp = (expires: number) => {
   const currentTimestamp = new Date().getTime();
@@ -21,11 +13,15 @@ const makeExpireTimestamp = (expires: number) => {
 
 export const authHelper = {
   signin: async (payload: RequestLogin) => {
-    const info = await postUserInfo(payload);
+    const info: ResultLogin = await postUserInfo(payload);
     authInfo.user = {
-      username: payload.username,
-      expiresTimestamp: makeExpireTimestamp(info.expiresIn), // 10 secs
-      ...DUMMY_USER,
+      username: info.username,
+      expiresTimestamp: makeExpireTimestamp(info.expiresIn),
+      expires: info.expiresIn,
+      accessToken: info.accessToken,
+      refreshToken: info.refreshToken,
+      permissions: info.permissions ?? [],
+      roles: info.roles ?? [],
     };
     authInfo.isAuthenticated = true;
 

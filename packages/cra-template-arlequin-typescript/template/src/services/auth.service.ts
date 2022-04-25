@@ -1,4 +1,4 @@
-import { AuthUserType, PermissionEnum, RoleEnum } from '@typings/arlequin';
+import { AuthUserType, PermissionEnum, RoleEnum } from '@typings/app/index.types';
 
 const authInfo = {
   isAuthenticated: false,

@@ -1,8 +1,8 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { ApiStatusCodes, SLASH } from '@app/constants/api.constants';
-import { objKeyToCamelCase, objKeyToSnakeCase } from '@app/helpers/transforms/index.helper';
 import authInfo from '@app/services/auth.service';
+import { objKeyToCamelCase, objKeyToSnakeCase } from '@app/utils/transforms/index.utils';
 
 export default class AbstractApiService {
   private anonymousEndpoints: string[];

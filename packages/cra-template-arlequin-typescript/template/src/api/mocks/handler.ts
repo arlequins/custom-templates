@@ -4,7 +4,8 @@ import { rest } from 'msw';
 import { wrapCheckAuth } from '@app/api/mocks/helper';
 import { SLASH } from '@app/constants/api.constants';
 import ENV from '@app/constants/env.constants';
-import { ApiVersionEnum, EndpointsEnum, RequestLogin, ResponseLogin } from '@typings/arlequin/api';
+import { ApiVersionEnum, EndpointsEnum, RequestLogin, ResponseLogin } from '@typings/app/api/index.types';
+import { RoleEnum } from '@typings/app/index.types';
 
 export const handlers = [
   rest.post([ENV.API_HOST, ApiVersionEnum.V1, EndpointsEnum.LOGIN].join(SLASH), (req, res, ctx) => {
@@ -15,7 +16,7 @@ export const handlers = [
       expiresIn: 10,
       idToken: 'idToken',
       refreshToken: 'refreshToken',
-      scope: 'scope',
+      scope: RoleEnum.SUPER_ADMIN,
       tokenType: 'tokenType',
     } as ResponseLogin;
 

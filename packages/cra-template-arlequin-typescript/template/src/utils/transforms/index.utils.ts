@@ -1,6 +1,7 @@
-import { AnyObjectType } from '@typings/arlequin';
+import { AnyObjectType } from '@typings/app/index.types';
 
 const isArray = (obj: AnyObjectType) => Array.isArray(obj);
+
 const isObject = (obj: AnyObjectType) => obj === Object(obj) && !isArray(obj) && typeof obj !== 'function';
 
 const checkInput = (input?: string | number) => {

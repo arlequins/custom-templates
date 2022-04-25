@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
-import AuthStatus from '@app/components/AuthStatus';
+import AuthStatus from '@app/components/templates/AuthStatus';
 import { useAuth } from '@app/contexts/Auth';
-import { LoginStatus } from '@typings/arlequin';
+import { LoginStatus } from '@typings/app/index.types';
 
 const DefaultLayout = () => {
   const navigate = useNavigate();

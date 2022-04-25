@@ -1,9 +1,11 @@
+import ENV from '@app/constants/env.constants';
+
 export const enum StorageStatus {
   EMPTY,
   SET,
   REMOVED,
 }
 
-export const enum STORAGE_KEYS {
-  AUTH = 'admin-login',
-}
+export const STORAGE_KEYS = {
+  AUTH: `${ENV.PROJECT_NAME}-admin-login`,
+};

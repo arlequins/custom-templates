@@ -1,10 +1,11 @@
 import { createContext, useState, useContext } from 'react';
 
-import { authHelper } from '@app/helpers/auth.helper';
+import { authHelper } from '@app/features/auth';
 import authInfo from '@app/services/auth.service';
 import { authStorage } from '@app/services/localstorage.service';
-import { AuthUserType, LoginStatus } from '@typings/arlequin';
-import { AuthContextType, RequestLogin } from '@typings/arlequin/api';
+import { RequestLogin } from '@typings/app/api/index.types';
+import { AuthContextType } from '@typings/app/api/usecases.types';
+import { AuthUserType, LoginStatus } from '@typings/app/index.types';
 
 const AuthContext = createContext<AuthContextType>(null!);
 

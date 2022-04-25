@@ -1,11 +1,10 @@
 import React from 'react';
 
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 
+import App from '@app/App';
 import worker from '@app/api/mocks';
 import { USE_MOCK_API } from '@app/constants/env.constants';
-import App from '@app/pages/App';
 import reportWebVitals from '@app/reportWebVitals';
 import '@app/styles/index.scss';
 
@@ -26,9 +25,7 @@ if (container) {
 
   root.render(
     <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <App />
     </React.StrictMode>
   );
 }
