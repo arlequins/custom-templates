@@ -1,5 +1,5 @@
 {
-  "name": "eslint-config-arlequin-typescript",
+  "name": "@arlequins/eslint-config-typescript",
   "version": "0.0.1",
   "description": "eslint config for typescript",
   "keywords": [
@@ -38,7 +38,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/arlequins/react-custom-templates.git",
-    "directory": "packages/eslint-config-arlequin-typescript/"
+    "directory": "packages/eslint-config-typescript/"
   },
   "license": "MIT",
   "bugs": {

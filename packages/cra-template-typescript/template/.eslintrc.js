@@ -1,5 +1,5 @@
 module.exports = {
   extends: [
-    "arlequin-typescript",
+    "@arlequin/typescript",
   ],
 };

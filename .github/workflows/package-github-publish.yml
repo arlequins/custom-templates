@@ -19,7 +19,7 @@ jobs:
           scope: '@arlequins'
       - name: npm publish
         run: |
-          lerna publish from-package -y --ignore eslint-config-arlequin-typescript
+          lerna publish from-package -y
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
