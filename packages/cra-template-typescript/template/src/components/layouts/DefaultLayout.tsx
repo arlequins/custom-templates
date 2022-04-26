@@ -16,7 +16,7 @@ const DefaultLayout = () => {
       alert('expires! force logout!');
       navigate('/', { replace: true });
     }
-  }, []);
+  }, [auth, navigate]);
 
   return (
     <div>

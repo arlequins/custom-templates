@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 
 import { createRoot } from 'react-dom/client';
 
-import App from '@app/App';
 import worker from '@app/api/mocks';
+import LoadingLayout from '@app/components/layouts/LoadingLayout';
 import { USE_MOCK_API } from '@app/constants/env.constants';
 import reportWebVitals from '@app/reportWebVitals';
+
 import '@app/styles/index.scss';
+
+const App = lazy(() => import('@app/App'));
 
 // Start the mocking conditionally.
 if (USE_MOCK_API) {
@@ -25,7 +28,9 @@ if (container) {
 
   root.render(
     <React.StrictMode>
-      <App />
+      <Suspense fallback={<LoadingLayout />}>
+        <App />
+      </Suspense>
     </React.StrictMode>
   );
 }

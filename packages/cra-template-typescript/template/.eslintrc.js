@@ -1,5 +1,7 @@
 module.exports = {
   extends: [
-    "@arlequin/typescript",
+    "react-app",
+    "react-app/jest",
+    "@arlequins/typescript",
   ],
 };
