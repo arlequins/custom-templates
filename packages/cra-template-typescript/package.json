@@ -1,6 +1,6 @@
 {
   "name": "@arlequins/cra-template-typescript",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "keywords": [
     "react",
     "create-react-app",
@@ -10,7 +10,7 @@
   "description": "The base TypeScript template for Create React App.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/arlequins/react-custom-templates.git",
+    "url": "https://github.com/arlequins/custom-templates.git",
     "directory": "packages/cra-template-typescript/"
   },
   "license": "MIT",
@@ -18,7 +18,7 @@
     "node": ">=16"
   },
   "bugs": {
-    "url": "https://github.com/arlequins/react-custom-templates/issues"
+    "url": "https://github.com/arlequins/scustom-templates/issues"
   },
   "files": [
     "template",

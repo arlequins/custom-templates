@@ -38,12 +38,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/arlequins/react-custom-templates.git",
+    "url": "https://github.com/arlequins/custom-templates.git",
     "directory": "packages/eslint-config-typescript/"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arlequins/react-custom-templates/issues"
+    "url": "https://github.com/arlequins/custom-templates/issues"
   },
   "publishConfig": {
     "access": "public",
