@@ -51,36 +51,27 @@ module.exports = {
       },
     ],
     quotes: ["error", "single"],
-    "import/no-unresolved": 0,
-    "sonarjs/prefer-immediate-return": 0,
-    "react/react-in-jsx-scope": 0,
-    "react/jsx-props-no-spreading": 0,
-    "react/require-default-props": 0,
-    "import/prefer-default-export": 0,
     "no-unused-expressions": 1,
     // disabling circular dependency, as it is causing issues
-    "import/no-cycle": 0,
     // allow param reassign for redux-toolkit
     "no-param-reassign": ["error", { props: false }],
-    // no return types needed if it can be inferred. useful for react components and sagas so it's less to worry about
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/explicit-module-boundary-types": 0,
-    "@typescript-eslint/prefer-optional-chain": 1,
-    "@typescript-eslint/no-non-null-assertion": 0,
-    "@typescript-eslint/prefer-namespace-keyword": 0,
-    "@typescript-eslint/no-namespace": 0,
-    "require-jsdoc": 0,
-    "react/button-has-type": 0,
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [{
+          "group": ["../*", "!@app/*", "!@typings/*", "!@custom/*"],
+          "message": "relative path is deprecated, except the alias path @app, @typings or @custom."
+        }],
+      }
+    ],
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": 0,
+    "import/no-cycle": 0,
     "import/no-extraneous-dependencies": [
       "error",
       { devDependencies: ["**/*.stories.tsx"] },
     ],
-    "no-restricted-imports": [
-      "error",
-      {
-        patterns: ["@app/components/*/*/*"],
-      },
-    ],
+    "import/no-useless-path-segments": 1,
     "import/order": [
       "error",
       {
@@ -103,6 +94,19 @@ module.exports = {
         pathGroupsExcludedImportTypes: ["builtin"],
       },
     ],
+    "sonarjs/prefer-immediate-return": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/require-default-props": 0,
+    "react/button-has-type": 0,
+    // no return types needed if it can be inferred. useful for react components and sagas so it's less to worry about
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/prefer-optional-chain": 1,
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "@typescript-eslint/prefer-namespace-keyword": 0,
+    "@typescript-eslint/no-namespace": 0,
+    "require-jsdoc": 0,
   },
   overrides: [
     {
