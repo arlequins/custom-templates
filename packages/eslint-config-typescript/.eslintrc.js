@@ -54,7 +54,7 @@ module.exports = {
     "no-unused-expressions": 1,
     // disabling circular dependency, as it is causing issues
     // allow param reassign for redux-toolkit
-    "no-param-reassign": ["error", { props: false }],
+    "no-param-reassign": [1, { props: false }],
     "no-restricted-imports": [
       "error",
       {
