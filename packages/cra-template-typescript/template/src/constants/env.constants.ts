@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-imports
 import packageJson from '../../package.json';
 
 const env = {
