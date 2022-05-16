@@ -73,3 +73,22 @@ export const objKeyToCamelCase = (obj: AnyObjectType) => {
 
   return obj;
 };
+
+export const setQuery = (payload: AnyObjectType) => {
+  let str = '';
+
+  if (Object.entries(payload).length === 0) {
+    return str;
+  }
+
+  str += '?';
+
+  for (const key in payload) {
+    if (Object.prototype.hasOwnProperty.call(payload, key)) {
+      const element = payload[key];
+      str += `${key}=${element}`;
+    }
+  }
+
+  return str;
+};

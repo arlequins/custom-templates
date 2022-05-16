@@ -1,29 +1,42 @@
 import { lazy } from 'react';
 
-import DefaultLayout from '@app/components/layouts/DefaultLayout';
+import AuthLayout from '@app/components/layouts/AuthLayout';
+import { AuthEnum, PermissionEnum, RouteConfig, UrlPathEnum } from '@app/types/typings/app/index.types';
 
 const PublicPage = lazy(() => import('@app/pages'));
 const LoginPage = lazy(() => import('@app/pages/login'));
-const ProtectedPage = lazy(() => import('@app/pages/protected'));
+const DashboardPage = lazy(() => import('@app/pages/dashboard'));
 
-const routes = [
+const routes: RouteConfig[] = [
   {
-    layout: DefaultLayout,
+    layout: <AuthLayout />,
     elements: [
       {
-        path: '/',
+        path: UrlPathEnum.ROOT,
         component: <PublicPage />,
-        isAuth: false,
+        auth: AuthEnum.ALL,
       },
       {
-        path: '/login',
+        path: UrlPathEnum.LOGIN,
         component: <LoginPage />,
-        isAuth: false,
+        auth: AuthEnum.ANONYMOUS_AUTH,
       },
       {
-        path: '/protected',
-        component: <ProtectedPage />,
-        isAuth: true,
+        path: UrlPathEnum.DASHBOARD,
+        component: <DashboardPage />,
+        auth: AuthEnum.REQUIRE_AUTH,
+        permissions: [PermissionEnum.DASHBOARD],
+      },
+      {
+        path: UrlPathEnum.PROTECTED,
+        component: <DashboardPage />,
+        auth: AuthEnum.REQUIRE_AUTH,
+      },
+      {
+        path: UrlPathEnum.USERS_READ,
+        component: <DashboardPage />,
+        auth: AuthEnum.REQUIRE_AUTH,
+        permissions: [PermissionEnum.USERS_READ],
       },
     ],
   },

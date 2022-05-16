@@ -1,6 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AsyncResponseResolverReturnType, DefaultRequestBody, MockedResponse, PathParams, ResponseComposition, RestContext, RestRequest } from 'msw';
 
+import { SLASH } from '@app/constants/api.constants';
+import { EndpointsEnum } from '@app/types/typings/app/api/index.types';
+
 const checkAccessToken = (token?: string[]) => {
   if (!token) {
     return false;
@@ -26,4 +29,8 @@ export const wrapCheckAuth = (
   }
 
   return flow(req, res, ctx);
+};
+
+export const concatEndpoint = (host: string, version: string, endpoint: EndpointsEnum) => {
+  return [host, version, endpoint].join(SLASH);
 };

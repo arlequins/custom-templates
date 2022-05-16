@@ -1,14 +1,15 @@
-import { RequestLogin, ResponseLogin } from '@typings/app/api/index.types';
 import { AuthUserType, LoginStatus, PermissionEnum, RoleEnum } from '@typings/app/index.types';
 
-export interface ResultLogin extends ResponseLogin {
+import { PostLoginParams, PostLoginResponse } from './index.types';
+
+export interface PostLoginResult extends PostLoginResponse {
   permissions?: PermissionEnum[];
   roles?: RoleEnum[];
 }
 
 export interface AuthContextType {
   user?: AuthUserType;
-  signin: (payload: RequestLogin) => Promise<LoginStatus>;
-  signout: () => void;
-  check: () => LoginStatus;
+  signIn: (payload: PostLoginParams) => Promise<LoginStatus>;
+  signOut: () => void;
+  loginStatus: LoginStatus;
 }

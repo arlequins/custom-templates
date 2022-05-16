@@ -1,14 +1,14 @@
 import { AxiosResponse } from 'axios';
 
 import { apiV1 } from '@app/services/api.service';
-import { EndpointsEnum, RequestLogin, ResponseLogin } from '@typings/app/api/index.types';
-import { ResultLogin } from '@typings/app/api/usecases.types';
+import { EndpointsEnum, GetDashboardListParams, GetDashboardListResponse, PostLoginParams, PostLoginResponse } from '@typings/app/api/index.types';
+import { PostLoginResult } from '@typings/app/api/usecases.types';
 import { PermissionEnum } from '@typings/app/index.types';
 
-export const postUserInfo = async (payload: RequestLogin): Promise<ResultLogin> => {
-  const response: AxiosResponse<ResponseLogin> = await apiV1.post(EndpointsEnum.LOGIN, {
-    ...payload,
-  });
+const { api, fetch } = apiV1;
+
+export const postUserInfo = async (payload: PostLoginParams): Promise<PostLoginResult> => {
+  const response: AxiosResponse<PostLoginResponse> = await api.post(EndpointsEnum.LOGIN, payload);
 
   return {
     ...response.data,
@@ -16,4 +16,9 @@ export const postUserInfo = async (payload: RequestLogin): Promise<ResultLogin> 
     // temp for permissions
     permissions: [PermissionEnum.DASHBOARD],
   };
+};
+
+export const getDashboardList = async (payload?: GetDashboardListParams): Promise<GetDashboardListResponse> => {
+  const response: AxiosResponse<GetDashboardListResponse> = await fetch(EndpointsEnum.DASHBOARD_LIST, payload);
+  return response.data;
 };

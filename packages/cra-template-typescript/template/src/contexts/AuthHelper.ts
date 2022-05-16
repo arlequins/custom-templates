@@ -1,20 +1,15 @@
 import { postUserInfo } from '@app/api/v1/index.api';
 import authInfo from '@app/services/auth.service';
 import { authStorage } from '@app/services/localstorage.service';
-import { RequestLogin } from '@typings/app/api/index.types';
-import { ResultLogin } from '@typings/app/api/usecases.types';
+import { PostLoginParams } from '@app/types/typings/app/api/index.types';
+import { PostLoginResult } from '@app/types/typings/app/api/usecases.types';
+import { makeExpireTimestamp } from '@app/utils/index.utils';
 import { LoginStatus } from '@typings/app/index.types';
 
-const makeExpireTimestamp = (expires: number) => {
-  const currentTimestamp = new Date().getTime();
-  const expiresTimestamp = currentTimestamp + expires * 1000;
-  return new Date(expiresTimestamp).getTime();
-};
-
-export const authHelper = {
-  signin: async (payload: RequestLogin) => {
-    const info: ResultLogin = await postUserInfo(payload);
-    authInfo.user = {
+const AuthHelper = {
+  signIn: async (payload: PostLoginParams) => {
+    const info: PostLoginResult = await postUserInfo(payload);
+    const user = {
       username: info.username,
       expiresTimestamp: makeExpireTimestamp(info.expiresIn),
       expires: info.expiresIn,
@@ -23,37 +18,53 @@ export const authHelper = {
       permissions: info.permissions ?? [],
       roles: info.roles ?? [],
     };
+    authInfo.user = user;
     authInfo.isAuthenticated = true;
 
-    authStorage.setItem(authInfo.user);
+    authStorage.setItem(user);
+    return user;
   },
-  signout: () => {
-    authInfo.user = undefined;
+  signOut: () => {
+    const user = undefined;
+    authInfo.user = user;
     authInfo.isAuthenticated = false;
 
     authStorage.removeItem();
+    return user;
   },
   check: () => {
-    const userInfo = authStorage.getItem();
+    const user = authStorage.getItem();
 
-    if (!userInfo) {
-      return LoginStatus.NOT_LOGIN;
+    if (!user) {
+      return {
+        user,
+        loginStatus: LoginStatus.NOT_LOGIN,
+      };
     }
 
     const currentTimestamp = new Date().getTime();
-    const expiresTimestamp = userInfo.expiresTimestamp ?? -1;
+    const expiresTimestamp = user.expiresTimestamp ?? -1;
     const isExpired = currentTimestamp > expiresTimestamp;
+
     if (isExpired) {
       authInfo.user = undefined;
       authInfo.isAuthenticated = false;
 
       authStorage.removeItem();
-      return LoginStatus.EXPIRES;
+      return {
+        user,
+        loginStatus: LoginStatus.EXPIRES,
+      };
     } else {
-      authInfo.user = userInfo;
+      authInfo.user = user;
       authInfo.isAuthenticated = true;
 
-      return LoginStatus.LOGIN;
+      return {
+        user,
+        loginStatus: LoginStatus.LOGIN,
+      };
     }
   },
 };
+
+export default AuthHelper;

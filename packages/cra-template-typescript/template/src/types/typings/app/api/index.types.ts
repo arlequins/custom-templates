@@ -11,15 +11,16 @@ export const enum EndpointsEnum {
   RESET_PASSWORD = 'reset-password',
   REFRESH_TOKEN = 'refresh-token',
   USERS = 'users',
+  DASHBOARD_LIST = 'dashboard/list',
 }
 
-export interface RequestLogin {
+export interface PostLoginParams {
   grantType: string;
   username: string;
   password: string;
 }
 
-export interface ResponseLogin {
+export interface PostLoginResponse {
   username: string;
   accessToken: string;
   expiresIn: number;
@@ -27,4 +28,17 @@ export interface ResponseLogin {
   refreshToken: string;
   scope: RoleEnum;
   tokenType: string;
+}
+
+export interface GetDashboardListParams {
+  date?: string;
+}
+
+export interface GetDashboardListResponseList {
+  id: number;
+  name: string;
+}
+
+export interface GetDashboardListResponse {
+  list: GetDashboardListResponseList[];
 }

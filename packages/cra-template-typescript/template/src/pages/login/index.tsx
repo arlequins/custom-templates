@@ -1,16 +1,13 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { useAuth } from '@app/contexts/Auth';
+import { useAuth } from '@app/contexts/AuthProvider';
+import { useLocationState } from '@app/hooks/locations';
 import { LoginStatus } from '@typings/app/index.types';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const auth = useAuth();
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const state = location.state as any;
-  const from = state?.from?.pathname || '/';
+  const { from, reason } = useLocationState();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,7 +16,7 @@ const LoginPage = () => {
     const username = formData.get('username') as string;
     const password = formData.get('password') as string;
 
-    const loginStatus = await auth.signin({
+    const loginStatus = await auth.signIn({
       username,
       password,
       grantType: 'password',
@@ -39,6 +36,7 @@ const LoginPage = () => {
   return (
     <div>
       <p>You must log in to view the page at {from}</p>
+      <p>reason: {reason}</p>
 
       <form onSubmit={handleSubmit}>
         <label>
