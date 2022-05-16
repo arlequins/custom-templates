@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useAuth } from '@app/contexts/Auth';
+import { useAuth } from '@app/contexts/AuthProvider';
 
 const AuthStatus = () => {
-  const auth = useAuth();
   const navigate = useNavigate();
+  const auth = useAuth();
 
   if (!auth.user) {
     return <p>You are not logged in.</p>;
@@ -15,7 +15,7 @@ const AuthStatus = () => {
       Welcome {`${auth.user.username}! `}
       <button
         onClick={async () => {
-          auth.signout();
+          auth.signOut();
           navigate('/');
         }}
       >

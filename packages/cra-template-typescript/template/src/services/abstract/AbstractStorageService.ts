@@ -1,16 +1,17 @@
-import { StorageStatus } from '@app/constants/enums.constants';
-import { AnyObjectType } from '@typings/app/index.types';
+import { AnyObjectType, StorageData, StorageStatus } from '@typings/app/index.types';
 
 export default class AbstractStorageService {
   private key: string;
   private source: Storage;
   private status: StorageStatus;
+  public expireSeconds?: number;
   public isActive = true;
 
-  constructor(key: string, source: Storage) {
+  constructor(key: string, source: Storage, expireSeconds?: number) {
     this.key = key;
     this.source = source;
     this.status = StorageStatus.EMPTY;
+    this.expireSeconds = expireSeconds;
 
     if (!(key && source)) {
       this.isActive = false;
@@ -43,11 +44,35 @@ export default class AbstractStorageService {
 
   public getItem = () => {
     const fetchStorage = this.source.getItem(this.key);
-    return this.parseData(fetchStorage);
+    const parseData: StorageData = this.parseData(fetchStorage);
+
+    if (!parseData) {
+      return undefined;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const data = parseData.data as any;
+
+    if (parseData?.expires) {
+      const currentTimestamp = new Date().getTime();
+      const expiresTimestamp = parseData?.expires ?? -1;
+      const isExpired = currentTimestamp > expiresTimestamp;
+
+      if (isExpired) {
+        return undefined;
+      }
+    }
+
+    return data;
   };
 
   public setItem = (data: AnyObjectType) => {
-    this.source.setItem(this.key, JSON.stringify(data));
+    const storageData: StorageData = {
+      data,
+      expires: this.expireSeconds ? new Date().getTime() + this.expireSeconds * 1000 : undefined,
+    };
+
+    this.source.setItem(this.key, JSON.stringify(storageData));
     this.status = StorageStatus.SET;
   };
 

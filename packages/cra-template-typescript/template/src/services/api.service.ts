@@ -8,4 +8,4 @@ class ApiService extends AbstractApiService {
   }
 }
 
-export const apiV1 = new ApiService(ApiVersionEnum.V1, [EndpointsEnum.LOGIN]).api;
+export const apiV1 = new ApiService(ApiVersionEnum.V1, [EndpointsEnum.LOGIN]);

@@ -1,8 +1,10 @@
 import React, { lazy, Suspense } from 'react';
 
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 
 import LoadingLayout from '@app/components/layouts/LoadingLayout';
+import { store } from '@app/redux';
 
 import '@app/styles/index.scss';
 
@@ -15,9 +17,11 @@ if (container) {
 
   root.render(
     <React.StrictMode>
-      <Suspense fallback={<LoadingLayout />}>
-        <App />
-      </Suspense>
+      <Provider store={store}>
+        <Suspense fallback={<LoadingLayout />}>
+          <App />
+        </Suspense>
+      </Provider>
     </React.StrictMode>
   );
 }

@@ -2,13 +2,15 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 
 import { ApiStatusCodes, SLASH } from '@app/constants/api.constants';
 import authInfo from '@app/services/auth.service';
-import { objKeyToCamelCase, objKeyToSnakeCase } from '@app/utils/transforms/index.utils';
+import { objKeyToCamelCase, objKeyToSnakeCase, setQuery } from '@app/utils/transforms/index.utils';
 
 export default class AbstractApiService {
   private anonymousEndpoints: string[];
   public api: AxiosInstance;
   public apiHost: string;
   public version: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public fetch: <T>(endpoint: string, payload: T) => Promise<AxiosResponse<any, any>>;
 
   constructor(apiHost: string, version: string, ignoreAuthEndpoints?: string[]) {
     this.apiHost = apiHost;
@@ -20,6 +22,7 @@ export default class AbstractApiService {
     this.anonymousEndpoints = ignoreAuthEndpoints ? ignoreAuthEndpoints : [];
 
     this.api = this.init();
+    this.fetch = <T>(endpoint: string, payload: T) => this.api.get(`${endpoint}?${setQuery(payload)}`);
   }
 
   private init = () => {
