@@ -1,0 +1,53 @@
+{
+  "name": "@arlequins/eslint-config-typescript-sveltejs",
+  "version": "0.0.1",
+  "description": "eslint config for typescript sveltejs",
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "eslint-config",
+    "sveltejs"
+  ],
+  "author": "arlequins",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha tests --recursive"
+  },
+  "dependencies": {
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-autofix": "^1.1.0",
+    "eslint-plugin-filenames": "^1.3.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-sonarjs": "^0.13.0",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "prettier": "^2.6.2"
+  },
+  "devDependencies": {
+    "mocha": "^9.1.3"
+  },
+  "engines": {
+    "node": "12.x || 14.x || >= 16"
+  },
+  "peerDependencies": {
+    "eslint": "^8.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arlequins/custom-templates.git",
+    "directory": "packages/eslint-config-typescript-sveltejs/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arlequins/custom-templates/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
