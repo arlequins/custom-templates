@@ -1,6 +1,6 @@
 {
-  "name": "@arlequins/cra-template-typescript",
-  "version": "0.0.8",
+  "name": "@arlequins/cra-template-typescript-base",
+  "version": "0.0.1",
   "keywords": [
     "react",
     "create-react-app",
@@ -11,14 +11,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/arlequins/custom-templates.git",
-    "directory": "packages/cra-template-typescript/"
+    "directory": "packages/cra-template-typescript-base/"
   },
   "license": "MIT",
   "engines": {
     "node": ">=16"
   },
   "bugs": {
-    "url": "https://github.com/arlequins/scustom-templates/issues"
+    "url": "https://github.com/arlequins/custom-templates/issues"
   },
   "files": [
     "template",

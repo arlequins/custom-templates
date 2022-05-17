@@ -1,4 +1,4 @@
-# cra-template-typescript
+# cra-template-typescript-base
 
 This is the official TypeScript template for [Create React App](https://github.com/facebook/create-react-app).
 
@@ -7,11 +7,11 @@ To use this template, add `--template typescript` when creating a new app.
 For example:
 
 ```sh
-npx create-react-app my-app --template typescript
+npx create-react-app my-app --template @arlequins/typescript-base
 
 # or
 
-yarn create react-app my-app --template typescript
+yarn create react-app my-app --template @arlequins/typescript-base
 ```
 
 For more information, please refer to:
